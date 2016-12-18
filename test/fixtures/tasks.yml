@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  level: MyString
+  name: MyString
+  description: MyString
+  resources: MyString
+  estimated_time: MyString
+
+two:
+  level: MyString
+  name: MyString
+  description: MyString
+  resources: MyString
+  estimated_time: MyString

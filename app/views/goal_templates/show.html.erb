@@ -1,0 +1,18 @@
+<div>
+  <h1><%= @goal_template.name %></h1>
+
+  <% @goal_template.levels.each do |level| %>
+    <div class="panel panel-info">
+      <div class="panel-heading"><%= level.name %></div>
+      <div class="panel-body">
+
+        <ul class="list-group">
+          <% level.tasks.each do |task| %>
+            <li class="list-group-item"><%= link_to task.name, task %></li>
+          <% end %>
+        </ul>
+
+      </div>
+    </div>
+  <% end %>
+</div>

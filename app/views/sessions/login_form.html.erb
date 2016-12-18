@@ -1,0 +1,28 @@
+<div>
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <%= error_messages @login_form %>
+    </div>
+  </div>
+
+  <%= form_for @login_form, url: login_user_path, html: { class: 'form-horizontal' } do |f| %>
+      <div class="form-group">
+        <%= f.label :email, 'E-mail', class: 'col-lg-2  col-lg-offset-3 control-label' %>
+        <div class="col-lg-2">
+          <%= f.text_field :email, class: 'form-control'  %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, 'Password', class: 'col-lg-2 col-lg-offset-3 control-label' %>
+        <div class="col-lg-2">
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-2 col-lg-offset-5">
+          <%= f.submit 'Login', class: 'btn btn-primary' %> or <%= link_to 'Register', register_user_path %>
+        </div>
+      </div>
+  <% end %>
+</div>

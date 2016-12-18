@@ -1,0 +1,48 @@
+<div>
+  <h1><%= @goal_template.name %></h1>
+  <%= render @goal.progress %>
+
+  <% @goal_template.levels.each do |level| %>
+      <div class="panel panel-info">
+        <div class="panel-heading"><%= level.name %></div>
+        <div class="panel-body">
+
+          <ul class="list-group">
+            <% level.tasks.each do |task| %>
+                <% task_schedule = task.task_schedule_for @goal %>
+                <% task_classes = [] %>
+                <% task_classes << 'list-group-item-success' if task.completed? @goal %>
+                <% task_classes << 'list-group-item-danger' if task_schedule.after_deadline? %>
+                <li class="list-group-item <%= task_classes.join(' ') %>">
+                  <%= link_to task.name, goal_task_path(@goal, task) %>
+                  <small class="text-muted"><%= task.estimated_time %> minutes</small>
+
+                  <% if task.completed? @goal %>
+                    <span class="label label-success pull-right">
+                      completed
+                      (<%= l task_schedule.completed_at, format: :short if task_schedule.completed_at %>)
+                    </span>
+                  <% else %>
+                    <%= link_to complete_task_path(task, @goal), class: 'btn btn-success btn-xs', method: :post do %>
+                        <i class="fa fa-check-square" aria-hidden="true"></i>
+                        Complete
+                    <% end %>
+
+                    <% if task_schedule.scheduled_at %>
+                      <span class="label label-info pull-right">
+                        scheduled
+                        (<%= l task_schedule.scheduled_at, format: :short %>)
+                      </span>
+                    <% end %>
+                  <% end %>
+
+                </li>
+            <% end %>
+          </ul>
+
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<%= link_to 'Unenroll', goal_path(@goal), method: :delete, data: { confirm: "Are you sure ?" }, class: 'btn btn-danger' %>

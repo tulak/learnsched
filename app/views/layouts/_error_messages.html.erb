@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <% for message in model.errors.full_messages %>
+    <li class="list-group-item list-group-item-danger"><%= message %></li>
+  <% end %>
+</ul>

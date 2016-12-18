@@ -1,0 +1,1 @@
+json.partial! "goal_templates/goal_template", goal_template: @goal_template

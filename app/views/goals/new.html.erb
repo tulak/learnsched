@@ -1,0 +1,39 @@
+<h1>Search for Goal Template</h1>
+
+<div>
+  <div class="row">
+    <div class="col-lg-12">
+      <%= form_for @new_goal_form, url: new_goal_path, method: :get do |f| %>
+          <div class="input-group">
+            <%= f.text_field :search_query, placeholder: 'Search for ...', class: 'form-control' %>
+            <span class="input-group-btn">
+              <%= f.submit 'Search', class: 'btn btn-default' %>
+            </span>
+          </div>
+      <% end %>
+    </div>
+  </div>
+
+  <p>&nbsp;</p>
+
+  <div class="row">
+    <% @new_goal_form.filtered_goal_templates.each do |goal_template| %>
+      <div class="col-md-4">
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            <h2><%= link_to goal_template.name, goal_template %></h2>
+            <p>
+              <%= goal_template.owner.name %>
+            </p>
+
+            <p>
+              <%= link_to 'Enroll', enroll_goal_path(goal_template), class: 'btn btn-primary', method: :post %>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>

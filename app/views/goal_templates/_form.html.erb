@@ -1,0 +1,79 @@
+<div vue-loader="GoalTemplateForm" data-pre="<%= goal_template_form.as_json.to_json %>"
+     data-method="<%= goal_template_form.form_method %>"
+     data-url="<%= goal_template_form.form_url %>">
+
+  <ul class="list-group" v-if="errors.length > 0">
+    <li class="list-group-item list-group-item-danger" v-for="error in errors">{{ error }}</li>
+  </ul>
+
+  <div class="form-group">
+    <label for="name" class="control-label">Name:</label>
+    <input id="name" v-model="name" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="public" class="control-label">Public:</label>
+    <input type="checkbox" id="public" v-model="public">
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Levels:</label>
+
+    <div class="panel panel-default" v-for="level in levels">
+      <div class="panel-heading">
+        <input type="text" v-if="level.editing" v-model="level.name"
+               v-bind:ref="'level_name_' + level.id"
+               v-on:blur="stopEditingLevelName(level)"
+               v-on:keyup.enter="stopEditingLevelName(level)"
+               >
+        <span v-else v-on:click="editLevelName(level)" class="cursor-pointer">{{ level.name }}</span>
+
+        <div class="btn-group pull-right">
+          <a class="btn btn-xs btn-danger" v-on:click="removeLevel(level)">Remove</a>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <div class="panel panel-info" v-for="task in level.tasks">
+          <div class="panel-heading cursor-pointer" v-on:click="editTask(task, level)" class="cursor-pointer">
+            {{ task.name }}
+            <a class="btn btn-xs btn-danger pull-right" v-on:click="removeTask(task, level)">Remove</a>
+          </div>
+          <div class="panel-body" v-if="task.editing">
+            <p>
+              <label class="control-label">Name</label>
+              <input type="text"  v-model="task.name" class="form-control">
+            </p>
+
+            <p>
+              <label class="control-label">Description</label>
+              <!-- :id="'level_'+level.id+'_task_'+task.id+'_description'" -->
+              <textarea v-model="task.description" cols="150" class="form-control"></textarea>
+            </p>
+
+            <p>
+              <label class="control-label">Resources</label>
+              <textarea v-model="task.resources" cols="150" class="form-control"></textarea>
+            </p>
+
+            <p>
+              <label class="control-label">Estimated time</label>
+              <input type="number" v-model="task.estimated_time" class="form-control">
+              Minutes
+            </p>
+          </div>
+        </div>
+        <a class="btn btn-success" v-on:click="addTask(level)">Add Task</a>
+      </div>
+    </div>
+
+    <a class="btn btn-success" v-on:click="addLevel">Add Level</a>
+
+  </div>
+
+  <hr>
+  <div class="form-group">
+    <a class="btn btn-primary" v-on:click="submitForm">Save</a>
+    <%= link_to 'Back', goal_templates_path, class: 'btn btn-info' %>
+  </div>
+</div>

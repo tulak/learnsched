@@ -1,0 +1,31 @@
+<h1>
+  Goals
+  <%= link_to 'New', new_goal_path, class: 'btn btn-success' %>
+</h1>
+
+<p>
+  <label class="control-label">Global progress</label>
+  <%= render @global_proress %>
+</p>
+
+<% if @tasks_after_deadline.count > 0 %>
+    <div class="alert alert-danger">You have <%= @tasks_after_deadline.count %> incomplete tasks after deadline.</div>
+<% end %>
+
+<div class="row">
+  <% @goals.each do |goal| %>
+      <% goal_template = goal.goal_template %>
+      <diw class="col-lg-4 col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            <h2><%= link_to goal_template.name, goal %></h2>
+            <p>
+              <%= goal_template.owner.name %>
+            </p>
+
+            <%= render goal.progress %>
+          </div>
+        </div>
+      </diw>
+  <% end %>
+</div>

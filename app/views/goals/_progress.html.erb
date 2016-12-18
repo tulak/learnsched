@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped" role="progressbar"
+           aria-valuenow="<%= progress.percentage %>" aria-valuemin="0" aria-valuemax="100"
+           style="width: <%= progress.percentage %>%;">
+        <span class="sr-only"><%= progress.percentage %></span>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <%= progress.completed %> of <%= progress.all %> tasks completed
+  </div>
+</div>

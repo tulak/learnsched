@@ -1,0 +1,50 @@
+<div>
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <%= error_messages @register_form %>
+    </div>
+  </div>
+
+  <%= form_for @register_form, url: register_user_path, html: { class: 'form-horizontal' } do |f| %>
+      <div class="form-group">
+        <%= f.label :email, 'E-mail', class: 'col-lg-2  col-lg-offset-3 control-label' %>
+        <div class="col-lg-2">
+          <%= f.text_field :email, class: 'form-control'  %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, 'Password', class: 'col-lg-2 col-lg-offset-3 control-label' %>
+        <div class="col-lg-2">
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, 'Password confirmation', class: 'col-lg-2 col-lg-offset-3 control-label' %>
+        <div class="col-lg-2">
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :first_name, 'First name', class: 'col-lg-2 col-lg-offset-3 control-label' %>
+        <div class="col-lg-2">
+          <%= f.text_field :first_name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :last_name, 'Last name', class: 'col-lg-2 col-lg-offset-3 control-label' %>
+        <div class="col-lg-2">
+          <%= f.text_field :last_name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-2 col-lg-offset-5">
+          <%= f.submit 'Register', class: 'btn btn-primary' %>
+        </div>
+      </div>
+  <% end %>
+</div>

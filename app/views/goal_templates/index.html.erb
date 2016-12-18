@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  Goal Templates
+  <%= link_to 'New', new_goal_template_path, class: 'btn btn-success' %>
+</h1>
+<p>
+  &nbsp;
+</p>
+
+
+<div class="row">
+  <% @goal_templates.each do |goal_template| %>
+      <div class="col-lg-3">
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            <h2><%= link_to goal_template.name, goal_template %></h2>
+            <p>
+              <%= goal_template.owner.name %>
+              <% if goal_template.public %>
+                  <span class="label label-success">Public</span>
+              <% else %>
+                  <span class="label label-danger">Private</span>
+              <% end %>
+            </p>
+
+            <p>
+              <%= link_to 'Edit', edit_goal_template_path(goal_template), class: 'btn btn-warning' %>
+              <%= link_to 'Destroy', goal_template, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            </p>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+</div>
+

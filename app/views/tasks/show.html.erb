@@ -1,0 +1,18 @@
+<h1><%= @task.name %></h1>
+
+<dl>
+  <dt><label class="control-label">Description</label></dt>
+  <dd><%= raw @task.description %></dd>
+</dl>
+
+<dl>
+  <dt><label class="control-label">Resources</label></dt>
+  <dd><%= raw @task.resources %></dd>
+</dl>
+
+<dl>
+  <dt><label class="control-label">Estimated Time</label></dt>
+  <dd><%= @task.estimated_time %> minutes</dd>
+</dl>
+
+<%= link_to 'Back', :back, class: 'btn btn-primary' %>

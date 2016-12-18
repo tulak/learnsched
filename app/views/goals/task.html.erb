@@ -1,0 +1,53 @@
+<h1><%= @task.name %></h1>
+
+<dl>
+  <dt><label class="control-label">Description</label></dt>
+  <dd><%= raw @task.description %></dd>
+</dl>
+
+<dl>
+  <dt><label class="control-label">Resources</label></dt>
+  <dd><%= raw @task.resources %></dd>
+</dl>
+
+<dl>
+  <dt><label class="control-label">Estimated Time</label></dt>
+  <dd><%= @task.estimated_time %> minutes</dd>
+</dl>
+
+
+<% unless @task_schedule.completed? %>
+  <div class="row">
+    <div class="col-lg-3 col-md-5 col-sm-6">
+      <%= form_tag schedule_task_path(@task, @goal), method: :post do %>
+        <label for="schedule_at" class="control-label">Schedule at</label>
+        <% if @task_schedule.scheduled_at %>
+            <p><%= l @task_schedule.scheduled_at, format: :long %></p>
+        <% end %>
+        <div class="input-group">
+          <input type="datetime-local" name="schedule_at" class="form-control">
+          <span class="input-group-btn">
+            <%= submit_tag 'Schedule', class: 'btn btn-success' %>
+          </span>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <div class="col-lg-3 col-md-5 col-sm-6">
+      <% if @task_schedule.completed %>
+          <p>
+            <span class="label label-success">completed</span>
+            <%= l @task_schedule.completed_at, format: :long if @task_schedule.completed_at %>
+          </p>
+      <% end %>
+  </div>
+</div>
+
+<p>&nbsp;</p>
+
+<%= link_to 'Back', :back, class: 'btn btn-primary' %>

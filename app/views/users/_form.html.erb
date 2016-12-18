@@ -1,0 +1,27 @@
+<%= form_for(user) do |f| %>
+  <%= error_messages user %>
+
+  <div class="form-group">
+    <%= f.label :email, class: 'control-label' %>
+    <%= user.email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, class: 'control-label' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name, class: 'control-label' %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name, class: 'control-label' %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save", class: 'btn btn-primary' %>
+  </div>
+<% end %>

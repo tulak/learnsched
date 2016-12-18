@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task: MyString
+  goal: MyString
+  completed: MyString
+  completed_at: MyString
+  scheduled_at: MyString
+
+two:
+  task: MyString
+  goal: MyString
+  completed: MyString
+  completed_at: MyString
+  scheduled_at: MyString
